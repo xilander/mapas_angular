@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, input, signal, viewChild } from '@angular/core';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-mini-map',
@@ -13,6 +14,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }`
 })
 export class MiniMapComponent implements AfterViewInit{
+  maptilerToken = environment.maptiler;
   divElement = viewChild<ElementRef>('map');
   lngLat = input.required<{lng: number, lat: number}>();
   zoom = input<number>(10);
@@ -25,7 +27,7 @@ export class MiniMapComponent implements AfterViewInit{
     const element = this.divElement()!.nativeElement ;
     const map = new maplibregl.Map({
       container: element,
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=sm6H7S00Ll4ZLvPIuHry',
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${this.maptilerToken}`,
       center: this.lngLat(), 
       zoom: this.zoom(),
       attributionControl: false,

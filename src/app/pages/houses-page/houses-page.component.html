@@ -10,11 +10,6 @@
     @for (house of houses(); track house.id; let i = $index) {
     <div class="card bg-base-100 shadow-xl rounded-t-md overflow-hidden">
         <app-mini-map [lngLat]="house.lngLat" [zoom]="18" />
-        <!-- <figure> 
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes" />
-        </figure> -->
         <div class="card-body">
           <h2 class="card-title">
             {{house.name}}

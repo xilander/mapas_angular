@@ -35,9 +35,9 @@ export class MarkersPageComponent implements AfterViewInit {
     const element = this.divElement()!.nativeElement ;
     const {lat, lng} = this.coordenadas();
     const map = new maplibregl.Map({
-      container: element, // container id
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=sm6H7S00Ll4ZLvPIuHry',
-      center: [lng, lat], // starting position [lng, lat]
+      container: element,
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${this.maptilerToken}`,
+      center: [lng, lat],
       zoom: 15,
       attributionControl: false,
     });  

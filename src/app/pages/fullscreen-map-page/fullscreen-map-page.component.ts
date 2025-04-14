@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, signal, viewChild } from '@angular/core';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-fullscreen-map-page',
@@ -13,6 +14,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }`
 })
 export class FullscreenMapPageComponent implements AfterViewInit {
+  maptilerToken = environment.maptiler;
   divElement = viewChild<ElementRef>('map');
   map = signal<maplibregl.Map | null>(null);
   zoom = signal(15);
@@ -31,7 +33,7 @@ export class FullscreenMapPageComponent implements AfterViewInit {
     
     const map = new maplibregl.Map({
       container: element, // container id
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=sm6H7S00Ll4ZLvPIuHry',
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${this.maptilerToken}`,
       center: [lng, lat], 
       zoom: this.zoom(),
     });
